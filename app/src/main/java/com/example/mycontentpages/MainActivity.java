@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -107,7 +108,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ivCurrent.setSelected(false);
 
-
         switch (position){
             case R.id.id_tag_home:
                 //viewPager.setCurrentItem(0);
@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ivSearch.setSelected(true);
                 ivCurrent=ivSearch;
                 break;
+
             case R.id.id_tag_favorites:
                 //fake data:test page
                 if(i == 1){

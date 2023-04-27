@@ -61,7 +61,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MapsFragment extends Fragment {
-    SupportMapFragment supportMapFragment;
     FusedLocationProviderClient fusedLocationProviderClient;
     private LocationManager locationManager;
     private LocationListener locationListener;
@@ -72,29 +71,18 @@ public class MapsFragment extends Fragment {
     private static double testLng=defaultLng;
     private static double myRealLat;
     private static double myRealLng;
+    private Button switchButton,button_up,button_left,button_right,button_down;
 
     private static  ArrayList<MarkerOptions> markerOptionList=new ArrayList<MarkerOptions>();
     private static ArrayList<Marker> markers=new ArrayList<>();
-    private   static GoogleMap thisMap;
-    private   static Circle displayCircle;
+    private static GoogleMap thisMap;
+    private static Circle displayCircle;
     private static Double pointChangeIndex=0.003;
-
     private static Integer VisualDistance=1000;
     private static boolean testMode= true;
-
-    /////////////////////////////////////////////////////////////
-    View rootView;
+    private View rootView;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
         @Override
         public void onMapReady(GoogleMap googleMap) {
 
@@ -111,14 +99,13 @@ public class MapsFragment extends Fragment {
                         @Override
                         public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
                             while (true) {
-                                Toast.makeText(getActivity(), "Permission Denied", Toast.LENGTH_LONG);
+                                Toast.makeText(getActivity(), "Permission Denied", Toast.LENGTH_LONG).show();
                             }
                         }
-
                         @Override
                         public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
                             while (true) {
-                                Toast.makeText(getActivity(), "Permission Should Be Shown", Toast.LENGTH_LONG);
+                                Toast.makeText(getActivity(), "Permission Should Be Shown", Toast.LENGTH_LONG).show();
                             }
                         }
                     }).check();
@@ -159,7 +146,6 @@ public class MapsFragment extends Fragment {
 
 
     public void mapStart(){
-
         if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -223,7 +209,7 @@ public class MapsFragment extends Fragment {
                         locationManager.requestLocationUpdates(LocationManager.FUSED_PROVIDER, 3000, 0, locationListener);
                     }
 
-                    Button switchButton=getActivity().findViewById(R.id.switchButton);
+                    switchButton=getActivity().findViewById(R.id.switchButton);
                     switchButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -250,7 +236,7 @@ public class MapsFragment extends Fragment {
                         }
                     });
 
-                    Button button_up,button_left,button_right,button_down;
+
                     button_up=getActivity().findViewById(R.id.upButton);
                     button_left=getActivity().findViewById(R.id.leftButton);
                     button_right=getActivity().findViewById(R.id.rightButton);
